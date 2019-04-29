@@ -20,17 +20,17 @@ SRC_DIR			:=	./
 OBJ_DIR			:=	./objs
 
 # files to compile
-FILE_LIST		:=	Colleen.c
-FILE_LIST_TWO	:=	Grace.c
-FILE_LIST_THREE	:=	Sully.c
+FILE_LIST		:=	Colleen.cpp
+FILE_LIST_TWO	:=	Grace.cpp
+FILE_LIST_THREE	:=	Sully.cpp
 
-OBJ_FILES		:= $(addprefix $(OBJ_DIR)/,$(FILE_LIST:.c=.o))
-OBJ_FILES		:= $(addprefix $(OBJ_DIR)/,$(FILE_LIST:.c=.o))
-OBJ_FILES		:= $(addprefix $(OBJ_DIR)/,$(FILE_LIST:.c=.o))
+OBJ_FILES		:= $(addprefix $(OBJ_DIR)/,$(FILE_LIST:.cpp=.o))
+OBJ_FILES_TWO	:= $(addprefix $(OBJ_DIR)/,$(FILE_LIST_TWO:.cpp=.o))
+OBJ_FILES_THREE	:= $(addprefix $(OBJ_DIR)/,$(FILE_LIST_THREE:.cpp=.o))
 
 # compiler and flags
-CC				:=	gcc
-CFLAGS			:=	-Wall -Werror -Wextra -fsanitize=address -O0
+CC				:=	g++
+CFLAGS			:=	-Wall -Werror -Wextra -std=c++11
 
 all: obj $(NAME)
 
@@ -38,13 +38,15 @@ obj:
 	@mkdir -p $(OBJ_DIR)
 
 # linking rule: executable NAME needs OBJ_FILES to link
-$(NAME): $(OBJ_FILES)
+$(NAME): $(OBJ_FILES) $(OBJ_FILES_TWO) $(OBJ_FILES_THREE)
 	$(CC) $(CFLAGS) $(OBJ_FILES) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ_FILES_TWO) -o $(NAME_TWO)
+	$(CC) $(CFLAGS) $(OBJ_FILES_THREE) -o $(NAME_THREE)
 
 # compiler rule: each .o file in OBJ_DIR needs a .c file in SRC_DIR
 # $< -- input file (.c)
 # $@ -- output file (.o)
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
@@ -52,6 +54,8 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f $(NAME_TWO)
+	rm -f $(NAME_THREE)
 
 relibs:
 	@make re --no-print-directory

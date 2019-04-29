@@ -10,7 +10,7 @@ void decipher(string to_print)
 	char	b = 92;
 	char	g = 34;
 	char	t = 9;
-	for (int i = 0; i < to_print.size(); ++i)
+	for (unsigned int i = 0; i < to_print.size(); ++i)
 	{
 		if (to_print[i] == 37)
 		{
@@ -33,7 +33,7 @@ void decipher(string to_print)
 
 int main()
 {
-	string	to_print = "#include <iostream>%n%nusing namespace std;%n%n// Do it. Or do not. There is no try.%nvoid decipher(string to_print)%n{%n%t// du bitwise tu feras%n%tchar%tn = 10;%n%tchar%tb = 92;%n%tchar%tg = 34;%n%tchar%tt = 9;%n%tfor (int i = 0; i < to_print.size(); ++i)%n%t{%n%t%tif (to_print[i] == 37)%n%t%t{%n%t%t%t++i;%n%t%t%tif (to_print[i] == 115)%n%t%t%t%tcout << g << to_print << g;%n%t%t%telse if (to_print[i] == 110)%n%t%t%t%tcout << n;%n%t%t%telse if (to_print[i] == 98)%n%t%t%t%tcout << b;%n%t%t%telse if (to_print[i] == 103)%n%t%t%t%tcout << g;%n%t%t%telse if (to_print[i] == 116)%n%t%t%t%tcout << t;%n%t%t}%n%t%telse%n%t%t%tcout << to_print[i];%n%t}%n}%n%nint main()%n{%n%tstring%tto_print = %s;%n%tdecipher(to_print);%n%treturn 0;%n}%n";
+	string	to_print = "#include <iostream>%n%nusing namespace std;%n%n// Do it. Or do not. There is no try.%nvoid decipher(string to_print)%n{%n%t// du bitwise tu feras%n%tchar%tn = 10;%n%tchar%tb = 92;%n%tchar%tg = 34;%n%tchar%tt = 9;%n%tfor (unsigned int i = 0; i < to_print.size(); ++i)%n%t{%n%t%tif (to_print[i] == 37)%n%t%t{%n%t%t%t++i;%n%t%t%tif (to_print[i] == 115)%n%t%t%t%tcout << g << to_print << g;%n%t%t%telse if (to_print[i] == 110)%n%t%t%t%tcout << n;%n%t%t%telse if (to_print[i] == 98)%n%t%t%t%tcout << b;%n%t%t%telse if (to_print[i] == 103)%n%t%t%t%tcout << g;%n%t%t%telse if (to_print[i] == 116)%n%t%t%t%tcout << t;%n%t%t}%n%t%telse%n%t%t%tcout << to_print[i];%n%t}%n}%n%nint main()%n{%n%tstring%tto_print = %s;%n%tdecipher(to_print);%n%treturn 0;%n}%n";
 	decipher(to_print);
 	return 0;
 }

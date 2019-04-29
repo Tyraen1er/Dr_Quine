@@ -25,8 +25,8 @@ FILE_LIST_TWO	:=	Grace.c
 FILE_LIST_THREE	:=	Sully.c
 
 OBJ_FILES		:= $(addprefix $(OBJ_DIR)/,$(FILE_LIST:.c=.o))
-OBJ_FILES		:= $(addprefix $(OBJ_DIR)/,$(FILE_LIST:.c=.o))
-OBJ_FILES		:= $(addprefix $(OBJ_DIR)/,$(FILE_LIST:.c=.o))
+OBJ_FILES_TWO	:= $(addprefix $(OBJ_DIR)/,$(FILE_LIST_TWO:.c=.o))
+OBJ_FILES_THREE	:= $(addprefix $(OBJ_DIR)/,$(FILE_LIST_THREE:.c=.o))
 
 # compiler and flags
 CC				:=	gcc
@@ -38,8 +38,10 @@ obj:
 	@mkdir -p $(OBJ_DIR)
 
 # linking rule: executable NAME needs OBJ_FILES to link
-$(NAME): $(OBJ_FILES)
+$(NAME): $(OBJ_FILES) $(OBJ_FILES_TWO) $(OBJ_FILES_THREE)
 	$(CC) $(CFLAGS) $(OBJ_FILES) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ_FILES_TWO) -o $(NAME_TWO)
+	$(CC) $(CFLAGS) $(OBJ_FILES_THREE) -o $(NAME_THREE)
 
 # compiler rule: each .o file in OBJ_DIR needs a .c file in SRC_DIR
 # $< -- input file (.c)
@@ -52,6 +54,8 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f $(NAME_TWO)
+	rm -f $(NAME_THREE)
 
 relibs:
 	@make re --no-print-directory
